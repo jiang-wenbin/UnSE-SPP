@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Unsupervised Speech Enhancement Using Optimal Transport and Speech Presence Probability</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/user.css">    
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">        
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Unsupervised Speech Enhancement Using Optimal Transport and Speech Presence Probability <small class="color_fade">Online Supplement</small>
+            </h1>
+        </header>
+
+        <h4> Authors </h4>
+        <div style="font-size: medium;">Wenbin Jiang, Kai Yu</div>
+        <h4> Abstract </h4>
+        <div style="font-size: medium;"> 
+            Speech enhancement models based on deep learning are generally trained in a supervised manner, requiring a substantial amount of training data that consists of pairs of noisy and clean speech. However, synthetically generated training data can only capture a limited range of realistic environments, and it is often challenging or nearly impossible to gather pairs of noisy and ground-truth clean speech. To overcome this limitation, we propose an unsupervised learning approach for speech enhancement that eliminates the need for paired training data. Specifically, our method utilizes the optimal transport criterion to train the speech enhancement model in an unsupervised manner. It employs a fidelity loss based on noisy speech and a distribution divergence loss to minimize the difference between the model's output and unpaired clean speech. Additionally, we use the speech presence probability as an additional constraint and incorporate the short-time Fourier transform (STFT) domain loss as an extra term for the unsupervised learning loss. We also apply the multi-resolution STFT loss as the validation loss to enhance the stability of the training process and improve the algorithm's performance. Experimental results on the VCTK + DEMAND benchmark demonstrate that the proposed method achieves competitive performance compared to the supervised methods. Furthermore, the speech recognition results on the CHiME4 benchmark show the superiority of the proposed method over its supervised counterpart.
+        </div>
+    </br>
+        <h4> Datasets </h4>
+        <div style="font-size: medium;">
+            <li>The <a href="https://datashare.ed.ac.uk/handle/10283/2791"> VCTK+DEMAND </a> dataset is used for demo. </li>
+            <li> Audio samples of the test set we processed are available at the repository (<a href="https://jiang-wenbin.github.io/UnSE-SPP/samples/VCTK">VCTK</a>).</li>
+        </div>
+    <!-- </br> -->
+    <h4> Setups </h4>
+        <div style="font-size: medium;">
+            <li>The neural network architecture of the denoising model (i.e., generator) and discriminator are detailed in <a href="https://jiang-wenbin.github.io/UnSE-SPP/generator.py">generator.py</a> and <a href="https://jiang-wenbin.github.io/UnSE-SPP/discriminator.py">discriminator.py</a>, respectively.</li>
+            <li>The configurations of the both models are detailed in <a href="https://jiang-wenbin.github.io/UnSE-SPP/model_arch.py"> model_arch.py</a>. </li>
+        </div>
+    <!-- </br> -->
+        <h4> Compared methods </h4>
+        <div style="font-size: medium;">
+            <li>OMLSA: <a href="https://israelcohen.com/software">Noise Spectrum Estimation in Adverse Environments: Improved Minima Controlled Recursive Averaging</a></li>
+            <li><a href="https://github.com/santi-pdp/segan">SEGAN: Speech Enhancement Generative Adversarial Network</a></li>
+            <li>SASEGAN: <a href="https://github.com/pquochuy/sasegan">Self-Attention Generative Adversarial Network for Speech Enhancement</a></li>
+            <li>DOTN: <a href="https://github.com/hsinyilin19/Discriminator-Constrained-Optimal-Transport-Network">Discriminator-Constrained Optimal Transport Network</a></li>
+        </div>
+    </br>
+        <h4> Audio Samples </h4>
+        <!-- <hr class="hr_line"> -->
+        <!-- <h3>VoiceBank+DEMAND</h3> -->
+        <table class="table ">
+            <thead>
+                <tr>
+                    <th>Model\id(noise)</th>
+                    <th>p257_006(cafe)</th>
+                    <th>p257_073(living)</th>
+                    <th>p257_286(bus)</th>
+                    <th>p232_227(office)</th>
+                    <th>p232_378(psquare)</th>                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr> <td> Clean </td>
+                <td><audio controls=""><source src="samples/Clean/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Clean/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Clean/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Clean/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Clean/p232_378.wav"></audio></td>
+                </tr>
+                <tr> <td> Noisy </td>
+                <td><audio controls=""><source src="samples/Noisy/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Noisy/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Noisy/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Noisy/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Noisy/p232_378.wav"></audio></td>
+                </tr>
+                <tr> <td> OMLSA </td>
+                <td><audio controls=""><source src="samples/OMLSA/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/OMLSA/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/OMLSA/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/OMLSA/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/OMLSA/p232_378.wav"></audio></td>
+                </tr>
+                <tr> <td> SEGAN </td>
+                <td><audio controls=""><source src="samples/SEGAN/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SEGAN/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SEGAN/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SEGAN/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SEGAN/p232_378.wav"></audio></td>
+                </tr>
+                <tr> <td> SASEGAN </td>
+                <td><audio controls=""><source src="samples/SASEGAN/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SASEGAN/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SASEGAN/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SASEGAN/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/SASEGAN/p232_378.wav"></audio></td>
+                </tr>
+                <tr> <td> DOTN </td>
+                <td><audio controls=""><source src="samples/DOTN/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/DOTN/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/DOTN/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/DOTN/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/DOTN/p232_378.wav"></audio></td>
+                </tr>
+                <tr> <td> Proposed </td>
+                <td><audio controls=""><source src="samples/Proposed/p257_006.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Proposed/p257_073.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Proposed/p257_286.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Proposed/p232_227.wav"></audio></td>
+                <td><audio controls=""><source src="samples/Proposed/p232_378.wav"></audio></td>
+                </tr>                    
+            </tbody>
+        </table>
+        <!-- <div style="font-size: medium;" class="color_fade"> Note: the audio samples of the original Noisy2Target paper are not publicly available.</div> -->
+        <h4>Spectrogram of the samples in first column (except clean)</h4>
+        <img src="img/spectrogram.png" class="container">
+    </br>    
+        <div class="row"> &nbsp; </div> <br/>
+
+    </div>
+</body>
